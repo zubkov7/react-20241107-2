@@ -1,25 +1,25 @@
-import { createElement } from "react";
 import { createRoot } from "react-dom/client";
+import { headphones } from "./constants/mock";
 
 const root = document.getElementById("root");
 
-const reactRoot = createRoot(root); // дерево react
-
-// reactRoot.render(
-//   createElement(
-//     "ul",
-//     {
-//       className: "someClass", // <div class="someClass" />
-//       style: { color: "red" },
-//     },
-//     [1, 2, 3, 5, 6, 7].map((id) => createElement("li", {}, id))
-//   )
-// );
+const reactRoot = createRoot(root);
 
 reactRoot.render(
-  <ul className='someClass' style={{ color: "red" }}>
-    {[1, 2, 3, 5, 6, 7].map((id) => (
-      <li>{id}</li>
+  <div>
+    <h1>Headphones</h1>
+    {headphones.map(({ name, id, reviews, codecs }) => (
+      <div key={id}>
+        <h2>{name}</h2>
+        <h3>Reviews</h3>
+        {reviews.map((text) => (
+          <span key={text}>{text}</span>
+        ))}
+        <h3>Codecs</h3>
+        {codecs.map((codec) => (
+          <span key={codec}>{codec}</span>
+        ))}
+      </div>
     ))}
-  </ul>
+  </div>
 );
