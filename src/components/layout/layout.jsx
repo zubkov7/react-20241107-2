@@ -5,7 +5,7 @@ import { ProgressBar } from "../progress-bar/progress-bar";
 export const Layout = ({ children }) => {
   return (
     <div>
-      <ProgressBar />
+      <ProgressBar viewVariant='colored' />
       <Header />
       {children}
       <Footer />

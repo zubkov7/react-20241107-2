@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Codecs } from "../codecs/codecs";
 import { HeadphoneCounter } from "../headphone-counter/headphone-counter";
 import { ReviewForm } from "../review-form/review-form";
@@ -13,7 +14,11 @@ export const Headphone = ({ name, brand, reviews, codecs }) => {
       <h2>{name}</h2>
       <h3>Brand</h3>
       <div>{brand}</div>
-      {reviews.length ? <Reviews reviews={reviews} /> : <div>empty review</div>}
+      {reviews.length ? (
+        <Reviews reviews={reviews} />
+      ) : (
+        <div>empty reviews</div>
+      )}
       <ReviewForm />
       {codecs.length ? <Codecs codecs={codecs} /> : <div>empty codecs</div>}
       <HeadphoneCounter />
