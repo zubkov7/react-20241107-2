@@ -1,3 +1,9 @@
+import { SwitchTheme } from "../switch-theme/switch-theme";
+
 export const Header = () => {
-  return <header>header</header>;
+  return (
+    <header>
+      header <SwitchTheme />
+    </header>
+  );
 };

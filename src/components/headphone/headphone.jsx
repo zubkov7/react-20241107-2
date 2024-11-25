@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Codecs } from "../codecs/codecs";
 import { HeadphoneCounter } from "../headphone-counter/headphone-counter";
 import { ReviewForm } from "../review-form/review-form";
