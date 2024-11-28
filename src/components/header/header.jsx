@@ -1,9 +1,11 @@
-import { SwitchTheme } from "../switch-theme/switch-theme";
+import { SwitchThemeButton } from "../switch-theme-button/switch-theme-button";
+import { AuthButton } from "../auth-button/auth-button";
 
 export const Header = () => {
   return (
     <header>
-      header <SwitchTheme />
+      <SwitchThemeButton />
+      <AuthButton />
     </header>
   );
 };

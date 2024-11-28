@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
 import { Counter } from "../counter/counter";
 import { useForm } from "./use-form";
+import { Button } from "../button/button";
 
 export const ReviewForm = () => {
   const {
@@ -15,13 +15,6 @@ export const ReviewForm = () => {
 
   const { name, address, text, rating } = form;
 
-  const nameInputRef = useRef(); // { current: undefined }
-
-  useEffect(() => {
-    nameInputRef.current.focus();
-    console.log(nameInputRef.current.offsetWidth);
-  }, []);
-
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <h3>Review Form</h3>
@@ -32,7 +25,6 @@ export const ReviewForm = () => {
           type='text'
           value={name}
           onChange={(event) => setName(event.target.value)}
-          ref={nameInputRef}
         />
       </div>
 
@@ -60,7 +52,7 @@ export const ReviewForm = () => {
         increment={incrementRating}
       />
 
-      <button onClick={clear}>clear</button>
+      <Button onClick={clear}>clear</Button>
     </form>
   );
 };
