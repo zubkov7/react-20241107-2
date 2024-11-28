@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { headphones } from "../../constants/mock";
-import { Headphone } from "../headphone/headphone";
-import { Tab } from "../tab/tab";
+import { useSelector } from "react-redux";
+import { selectHeadphonesIds } from "../../redux/entities/headphones/headphones-slice";
+import { HeadphoneContainer } from "../headphone/headphone-container";
+import { HeadphoneTabContainer } from "../headphone-tab/headphone-tab-container";
 
 export const HeadphonesPage = ({ title }) => {
-  const [activeHeadphoneId, setActiveHeadphoneId] = useState(headphones[0].id);
+  const headphonesIds = useSelector(selectHeadphonesIds);
 
-  const activeHeadphone = headphones.find(({ id }) => id === activeHeadphoneId);
+  const [activeHeadphoneId, setActiveHeadphoneId] = useState(
+    headphonesIds[0].id
+  );
 
   const handleSetActiveHeadphoneId = (id) => {
     if (activeHeadphoneId === id) {
@@ -20,23 +23,17 @@ export const HeadphonesPage = ({ title }) => {
     <div>
       <h1>{title}</h1>
 
-      {headphones.map(({ name, id }) => (
-        <Tab
+      {headphonesIds.map((id) => (
+        <HeadphoneTabContainer
           key={id}
-          title={name}
+          id={id}
           onClick={() => handleSetActiveHeadphoneId(id)}
           isActive={id === activeHeadphoneId}
         />
       ))}
 
-      {activeHeadphone && (
-        <Headphone
-          name={activeHeadphone.name}
-          brand={activeHeadphone.brand}
-          reviews={activeHeadphone.reviews}
-          codecs={activeHeadphone.codecs}
-          key={activeHeadphone.id}
-        />
+      {activeHeadphoneId && (
+        <HeadphoneContainer id={activeHeadphoneId} key={activeHeadphoneId} />
       )}
     </div>
   );
