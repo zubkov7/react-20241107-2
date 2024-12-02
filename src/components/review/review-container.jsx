@@ -9,7 +9,5 @@ export const ReviewContainer = ({ id }) => {
     return null;
   }
 
-  console.log(review.user);
-
   return <Review text={review.text} userId={review.user} />;
 };

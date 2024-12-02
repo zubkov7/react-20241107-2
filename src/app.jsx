@@ -5,6 +5,32 @@ import { ThemeContextProvider } from "./components/theme-context/theme-context";
 import { AuthContextProvider } from "./components/auth-context/auth-context";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import { HeadphonePage } from "./components/headphone-page/headphone-page";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HeadphonesPage title='headphones app' />,
+    errorElement: <Navigate to='/' />,
+    children: [
+      {
+        path: "headphone/:headphoneId",
+        element: <HeadphonePage />,
+      },
+      {
+        path: "headphone/custom",
+        element: <div>custom</div>,
+      },
+    ],
+  },
+  { path: "/about", element: <div>about</div> },
+  { path: "blocked", element: <Navigate to='/about' replace /> },
+]);
 
 export const App = () => {
   return (
@@ -12,7 +38,7 @@ export const App = () => {
       <ThemeContextProvider>
         <AuthContextProvider>
           <Layout>
-            <HeadphonesPage title='headphones app' />
+            <RouterProvider router={router} />
           </Layout>
         </AuthContextProvider>
       </ThemeContextProvider>

@@ -12,6 +12,12 @@ export const HeadphoneContainer = ({ id }) => {
   const { name, brand, reviews, codecs } = headphone;
 
   return (
-    <Headphone name={name} brand={brand} reviews={reviews} codecs={codecs} />
+    <Headphone
+      name={name}
+      brand={brand}
+      reviews={reviews}
+      codecs={codecs}
+      id={id}
+    />
   );
 };
