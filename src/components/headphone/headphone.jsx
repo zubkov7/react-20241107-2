@@ -16,8 +16,8 @@ export const Headphone = ({ name, brand, reviews, codecs }) => {
       <h2>{name}</h2>
       <h3>Brand</h3>
       <div>{brand}</div>
-      {Boolean(reviews.length) && <Reviews reviews={reviews} />}
-      {Boolean(codecs.length) && <Codecs codecs={codecs} />}
+      {Boolean(reviews.length) && <Reviews reviewsIds={reviews} />}
+      {Boolean(codecs.length) && <Codecs codecsIds={codecs} />}
       {auth.isAuthorized && (
         <>
           <HeadphoneCounter />

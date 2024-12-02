@@ -1,9 +1,13 @@
-export const Codecs = ({ codecs }) => {
+import { CodecContainer } from "../codec/codec-container";
+
+export const Codecs = ({ codecsIds }) => {
   return (
     <div>
       <h3>Codecs</h3>
-      {codecs?.map((codec) => (
-        <li key={codec}>{codec}</li>
+      {codecsIds.map((id) => (
+        <li key={id}>
+          <CodecContainer id={id} />
+        </li>
       ))}
     </div>
   );
