@@ -17,6 +17,7 @@ export const HeadphoneCounter = ({ id }) => {
 
   return (
     <div>
+      <h3>Cart</h3>
       <Counter value={amount} increment={increment} decrement={decrement} />
     </div>
   );

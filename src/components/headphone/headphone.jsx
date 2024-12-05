@@ -1,10 +1,8 @@
 import { useAuth } from "../auth-context/use-auth";
-import { Codecs } from "../codecs/codecs";
 import { HeadphoneCounter } from "../headphone-counter/headphone-counter";
-import { ReviewForm } from "../review-form/review-form";
-import { Reviews } from "../reviews/reviews";
+import { TabLink } from "../tab-link/tab-link";
 
-export const Headphone = ({ name, brand, reviews, codecs, id }) => {
+export const Headphone = ({ name, brand, id }) => {
   const { auth } = useAuth();
 
   if (!name) {
@@ -16,14 +14,9 @@ export const Headphone = ({ name, brand, reviews, codecs, id }) => {
       <h2>{name}</h2>
       <h3>Brand</h3>
       <div>{brand}</div>
-      {Boolean(reviews.length) && <Reviews reviewsIds={reviews} />}
-      {Boolean(codecs.length) && <Codecs codecsIds={codecs} />}
-      {auth.isAuthorized && (
-        <>
-          <HeadphoneCounter id={id} />
-          <ReviewForm />
-        </>
-      )}
+      {auth.isAuthorized && <HeadphoneCounter id={id} />}
+      <TabLink to='reviews' title='Reviews' />
+      <TabLink to='codecs' title='Codecs' />
     </section>
   );
 };

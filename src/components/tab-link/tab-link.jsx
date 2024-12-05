@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import { NavLink } from "react-router-dom";
 
-import styles from "./headphone-tab.module.css";
+import styles from "./tab-link.module.css";
 
-export const HeadphoneTab = ({ id, title }) => {
+export const TabLink = ({ to, title }) => {
   return (
     <NavLink
-      to={`headphone/${id}`}
+      to={to}
       className={({ isActive }) =>
         classNames(styles.link, isActive && styles.activeLink)
       }
