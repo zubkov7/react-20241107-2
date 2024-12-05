@@ -5,7 +5,6 @@ export const HeadphonesPage = () => {
   return (
     <div>
       <HeadphonesTabsContainer />
-
       <Outlet />
     </div>
   );
