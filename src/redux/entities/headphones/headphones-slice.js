@@ -6,11 +6,6 @@ const entityAdapter = createEntityAdapter();
 export const headphonesSlice = createSlice({
   name: "headphones",
   initialState: entityAdapter.getInitialState(),
-  selectors: {
-    selectHeadphonesIds: (state) => state.ids,
-    selectHeadphoneById: (state, id) => state.entities[id],
-    selectHeadphonesRequestStatus: (state) => state.requestStatus,
-  },
   extraReducers: (builder) =>
     builder.addCase(getHeadphones.fulfilled, (state, { payload }) => {
       entityAdapter.setMany(state, payload);
@@ -18,7 +13,6 @@ export const headphonesSlice = createSlice({
 });
 
 export const {
-  selectHeadphoneById,
-  selectHeadphonesIds,
-  selectHeadphonesRequestStatus,
-} = headphonesSlice.selectors;
+  selectById: selectHeadphoneById,
+  selectIds: selectHeadphonesIds,
+} = entityAdapter.getSelectors((state) => state.headphones);

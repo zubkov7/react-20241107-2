@@ -6,12 +6,6 @@ import { codecsSlice } from "./entities/codecs/codecs-slice";
 import { cartSlice } from "./ui/cart/cart-slice";
 import { requestSlice } from "./ui/request/request-slice";
 
-const loggerMiddleware = (store) => (next) => (action) => {
-  console.log(action);
-
-  return next(action);
-};
-
 export const store = configureStore({
   reducer: {
     [headphonesSlice.name]: headphonesSlice.reducer,
@@ -21,6 +15,4 @@ export const store = configureStore({
     [cartSlice.name]: cartSlice.reducer,
     [requestSlice.name]: requestSlice.reducer,
   },
-  middleware: (getDefaultMiddliwares) =>
-    getDefaultMiddliwares().concat(loggerMiddleware),
 });

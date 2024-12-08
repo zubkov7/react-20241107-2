@@ -3,7 +3,7 @@ import { selectHeadphonesIds } from "./headphones-slice";
 
 export const getHeadphones = createAsyncThunk(
   "headphones/getHeadphones",
-  async (_, { getState, dispatch, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     const response = await fetch("http://localhost:3001/api/products");
 
     const result = await response.json();

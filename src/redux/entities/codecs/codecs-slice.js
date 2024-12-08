@@ -1,22 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { normalizedCodecs } from "../../../constants/normalized-mock";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { getCodecsByRestaurantId } from "./get-codecs-by-restaurant-id";
 
-const initialState = {
-  entities: normalizedCodecs.reduce((acc, codec) => {
-    acc[codec.id] = codec;
-
-    return acc;
-  }, {}),
-  ids: normalizedCodecs.map(({ id }) => id),
-};
+const entityAdapter = createEntityAdapter();
 
 export const codecsSlice = createSlice({
   name: "codecs",
-  initialState,
-  selectors: {
-    selectCodecsIds: (state) => state.ids,
-    selectCodecById: (state, id) => state.entities[id],
-  },
+  initialState: entityAdapter.getInitialState(),
+  extraReducers: (builder) =>
+    builder.addCase(getCodecsByRestaurantId.fulfilled, (state, { payload }) => {
+      entityAdapter.setMany(state, payload);
+    }),
 });
 
-export const { selectCodecsIds, selectCodecById } = codecsSlice.selectors;
+export const { selectById: selectCodecById, selectIds: selectCodecsIds } =
+  entityAdapter.getSelectors((state) => state.codecs);
