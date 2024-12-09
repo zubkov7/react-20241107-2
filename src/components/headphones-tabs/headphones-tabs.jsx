@@ -1,11 +1,11 @@
-import { HeadphoneTabContainer } from "../headphone-tab/headphone-tab-container";
+import { TabLink } from "../tab-link/tab-link";
 
-export const HeadphonesTabs = ({ headphonesIds }) => {
+export const HeadphonesTabs = ({ headphones }) => {
   return (
     <div>
       <h3>Choose headphone</h3>
-      {headphonesIds.map((id) => (
-        <HeadphoneTabContainer key={id} id={id} />
+      {headphones.map(({ name, id }) => (
+        <TabLink title={name} to={id} key={id} />
       ))}
     </div>
   );

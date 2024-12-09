@@ -1,29 +1,20 @@
-import { useSelector } from "react-redux";
-import { selectHeadphonesIds } from "../../redux/entities/headphones/headphones-slice";
 import { HeadphonesTabs } from "./headphones-tabs";
-import { getHeadphones } from "../../redux/entities/headphones/get-headphones";
-import { useRequest } from "../../redux/hooks/use-request";
-import {
-  REQUEST_PENDING_STATUS,
-  REQUEST_REJECTED_STATUS,
-} from "../../redux/ui/request/constants";
+import { useGetHeadphonesQuery } from "../../redux/services/api";
 
 export const HeadphonesTabsContainer = () => {
-  const headphonesIds = useSelector(selectHeadphonesIds);
+  const { data, isLoading, isError } = useGetHeadphonesQuery();
 
-  const requestStatus = useRequest(getHeadphones);
-
-  if (requestStatus === REQUEST_PENDING_STATUS) {
+  if (isLoading) {
     return "loading ...";
   }
 
-  if (requestStatus === REQUEST_REJECTED_STATUS) {
+  if (isError) {
     return "error";
   }
 
-  if (!headphonesIds.length) {
+  if (!data.length) {
     return null;
   }
 
-  return <HeadphonesTabs headphonesIds={headphonesIds} />;
+  return <HeadphonesTabs headphones={data} />;
 };
