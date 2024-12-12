@@ -1,3 +1,5 @@
+"use client";
+
 import { Layout } from "./components/layout/layout";
 import "./app.css";
 import { ThemeContextProvider } from "./components/theme-context/theme-context";
@@ -29,10 +31,6 @@ const router = createBrowserRouter([
             path: ":headphoneId",
             element: <HeadphonePage />,
             children: [
-              {
-                index: true,
-                element: <Navigate to='reviews' replace />,
-              },
               { path: "reviews", element: <HeadphoneReviewsPage /> },
               { path: "codecs", element: <HeadphoneCodecsPage /> },
             ],
@@ -43,7 +41,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const App = () => {
+const App = () => {
   return (
     <Provider store={store}>
       <ThemeContextProvider>
@@ -54,3 +52,5 @@ export const App = () => {
     </Provider>
   );
 };
+
+export default App;
