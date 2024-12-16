@@ -5,7 +5,7 @@ export const HeadphonesTabs = ({ headphones }) => {
     <div>
       <h3>Choose headphone</h3>
       {headphones.map(({ name, id }) => (
-        <TabLink title={name} to={id} key={id} />
+        <TabLink title={name} href={`/headphones/${id}`} key={id} />
       ))}
     </div>
   );

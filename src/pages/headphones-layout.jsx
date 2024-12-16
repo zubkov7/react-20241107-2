@@ -1,11 +1,10 @@
-import { Outlet } from "react-router-dom";
 import { HeadphonesTabsContainer } from "../components/headphones-tabs/headphones-tabs-container";
 
-export const HeadphonesPage = () => {
+export const HeadphonesLayout = ({ children }) => {
   return (
     <div>
       <HeadphonesTabsContainer />
-      <Outlet />
+      {children}
     </div>
   );
 };

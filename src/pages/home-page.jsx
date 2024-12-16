@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export const HomePage = () => {
-  return <Link to='/headphones'>Headphones Page</Link>;
+  return <Link href='/headphones'>Headphones Page</Link>;
 };

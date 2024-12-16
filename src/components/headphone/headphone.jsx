@@ -15,8 +15,8 @@ export const Headphone = ({ name, brand, id }) => {
       <h3>Brand</h3>
       <div>{brand}</div>
       {auth.isAuthorized && <HeadphoneCounter id={id} />}
-      <TabLink to='reviews' title='Reviews' />
-      <TabLink to='codecs' title='Codecs' />
+      <TabLink href={`/headphones/${id}/reviews`} title='Reviews' />
+      <TabLink href={`/headphones/${id}/codecs`} title='Codecs' />
     </section>
   );
 };

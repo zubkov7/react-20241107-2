@@ -14,7 +14,7 @@ import {
 import { HomePage } from "./pages/home-page";
 import { HeadphoneReviewsPage } from "./pages/headphone-reviews-page";
 import { HeadphoneCodecsPage } from "./pages/headphone-codecs-page";
-import { HeadphonePage } from "./pages/headphone-page";
+import { HeadphoneLayout } from "./pages/headphone-layout";
 import { HeadphonesPage } from "./pages/headphones-page";
 
 const router = createBrowserRouter([
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":headphoneId",
-            element: <HeadphonePage />,
+            element: <HeadphoneLayout />,
             children: [
               { path: "reviews", element: <HeadphoneReviewsPage /> },
               { path: "codecs", element: <HeadphoneCodecsPage /> },

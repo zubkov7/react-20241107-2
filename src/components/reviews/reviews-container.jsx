@@ -1,3 +1,5 @@
+"use client";
+
 import { Reviews } from "./reviews";
 import {
   useAddReviewMutation,
