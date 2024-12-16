@@ -1,4 +1,4 @@
-import { HeadphoneContainer } from "../components/headphone/headphone-container";
+import { HeadphoneContainer } from "../headphone/headphone-container";
 
 export const HeadphoneLayout = async ({ params, children }) => {
   const { headphoneId } = await params;

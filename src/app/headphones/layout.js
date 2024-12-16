@@ -1,3 +1,3 @@
-import { HeadphonesLayout } from "../../pages/headphones-layout";
+import { HeadphonesLayout } from "../../components/pages/headphones-layout";
 
 export default HeadphonesLayout;

@@ -1,3 +1,3 @@
-import { HeadphoneReviewsPage } from "../../../../pages/headphone-reviews-page";
+import { HeadphoneReviewsPage } from "../../../../components/pages/headphone-reviews-page";
 
 export default HeadphoneReviewsPage;

@@ -1,3 +1,5 @@
+"use client";
+
 import { useAuth } from "../auth-context/use-auth";
 import { HeadphoneCounter } from "../headphone-counter/headphone-counter";
 import { TabLink } from "../tab-link/tab-link";
