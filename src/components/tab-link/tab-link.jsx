@@ -14,6 +14,7 @@ export const TabLink = ({ href, title }) => {
       className={classNames(styles.link, {
         [styles.activeLink]: href === pathname,
       })}
+      prefetch={true}
     >
       {title}
     </Link>

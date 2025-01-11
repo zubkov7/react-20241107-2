@@ -1,3 +1,5 @@
+"use client";
+
 import { useProgress } from "./use-progress";
 
 import styles from "./progress-bar.module.css";

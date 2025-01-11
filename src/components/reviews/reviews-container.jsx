@@ -1,35 +1,50 @@
 "use client";
 
 import { Reviews } from "./reviews";
-import {
-  useAddReviewMutation,
-  useGetReviewsByHeadphoneIdQuery,
-  useGetUsersQuery,
-} from "../../redux/services/api";
-import { useCallback } from "react";
+import { addReviewAction } from "../../actions/add-review-action";
+import { usePathname } from "next/navigation";
+import { useCallback, useOptimistic } from "react";
 
-export const ReviewsContainer = ({ headphoneId }) => {
-  const { data, isFetching: isGetReviewsFetching } =
-    useGetReviewsByHeadphoneIdQuery(headphoneId);
-  useGetUsersQuery();
+export const ReviewsContainer = ({ headphoneId, reviews }) => {
+  const pathname = usePathname();
 
-  const [addReview, { isLoading: isAddReviewFetching }] =
-    useAddReviewMutation();
-
-  const handleAddReview = useCallback(
-    (review) => {
-      addReview({ headphoneId, review });
-    },
-    [addReview, headphoneId]
+  const [optimisticReviews, addOptimisticReview] = useOptimistic(
+    reviews,
+    (currentState, optimisticValue) => [
+      ...currentState,
+      { ...optimisticValue, id: "creating" },
+    ]
   );
 
-  if (isGetReviewsFetching || isAddReviewFetching) {
-    return "...loading";
-  }
+  const handleAddReview = useCallback(
+    async (state, formData) => {
+      if (formData === null) {
+        return {
+          text: "",
+          rating: 5,
+        };
+      }
 
-  if (!data.length) {
+      const text = formData.get("text");
+      const rating = formData.get("rating");
+
+      const review = { text, rating, user: "asdasdoi29tu384f" };
+
+      addOptimisticReview(review);
+
+      await addReviewAction({ headphoneId, pathname, review });
+
+      return {
+        text: "default",
+        rating: 5,
+      };
+    },
+    [addOptimisticReview, headphoneId, pathname]
+  );
+
+  if (!optimisticReviews.length) {
     return null;
   }
 
-  return <Reviews reviews={data} onAddReview={handleAddReview} />;
+  return <Reviews reviews={optimisticReviews} onAddReview={handleAddReview} />;
 };

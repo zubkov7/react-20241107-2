@@ -4,6 +4,7 @@ const { products, codecs, users, reviews } = require("./mock");
 const { reply, getById, updateById } = require("./utils");
 
 router.get("/products", (req, res, next) => {
+  console.log("get products");
   reply(res, products);
 });
 
@@ -32,6 +33,7 @@ router.get("/codecs", (req, res, next) => {
 });
 
 router.get("/reviews", (req, res, next) => {
+  console.log("get reviews");
   const { productId } = req.query;
   let result = reviews;
   if (productId) {
@@ -76,6 +78,7 @@ router.patch("/review/:reviewId", (req, res, next) => {
 });
 
 router.get("/users", (req, res, next) => {
+  console.log("get users");
   reply(res, users);
 });
 
